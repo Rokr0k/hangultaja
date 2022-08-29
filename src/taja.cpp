@@ -49,85 +49,41 @@ void ht::startgame(const std::vector<std::wstring> &lines, const std::string &la
                 }
                 attroff(COLOR_PAIR(pair));
             }
-            attron(COLOR_PAIR(1));
-            mvaddwstr(2, 0, lines[lineIndex].c_str());
-            attroff(COLOR_PAIR(1));
-            move(3, 0);
-            for (size_t i = 0; i < line.length(); i++)
+        }
+        attron(COLOR_PAIR(1));
+        mvaddwstr(2, 0, lines[lineIndex].c_str());
+        attroff(COLOR_PAIR(1));
+        move(3, 0);
+        for (size_t i = 0; i < line.length(); i++)
+        {
+            int pair;
+            if (line[i] == lines[lineIndex][i])
             {
-                int pair;
-                if (line[i] == lines[lineIndex][i])
-                {
-                    pair = 2;
-                }
-                else
-                {
-                    pair = 3;
-                }
-                attron(COLOR_PAIR(pair));
-                addwstr(line.substr(i, 1).c_str());
-                attroff(COLOR_PAIR(pair));
-            }
-            attron(COLOR_PAIR(4));
-            if (m.empty())
-            {
-                addwstr(L" ");
+                pair = 2;
             }
             else
             {
-                addwstr(m.get_preedit().c_str());
+                pair = 3;
             }
-            attroff(COLOR_PAIR(4));
-            if (lineIndex + 1 < lines.size())
-            {
-                attron(COLOR_PAIR(1));
-                mvaddwstr(4, 0, lines[lineIndex + 1].c_str());
-                attroff(COLOR_PAIR(1));
-            }
+            attron(COLOR_PAIR(pair));
+            addwstr(line.substr(i, 1).c_str());
+            attroff(COLOR_PAIR(pair));
+        }
+        attron(COLOR_PAIR(4));
+        if (m.empty())
+        {
+            addwstr(L" ");
         }
         else
         {
+            addwstr(m.get_preedit().c_str());
+        }
+        attroff(COLOR_PAIR(4));
+        if (lineIndex + 1 < lines.size())
+        {
             attron(COLOR_PAIR(1));
-            mvaddwstr(0, 0, lines[lineIndex].c_str());
+            mvaddwstr(4, 0, lines[lineIndex + 1].c_str());
             attroff(COLOR_PAIR(1));
-            move(1, 0);
-            for (size_t i = 0; i < line.length(); i++)
-            {
-                int pair;
-                if (line[i] == lines[lineIndex][i])
-                {
-                    pair = 2;
-                }
-                else
-                {
-                    pair = 3;
-                }
-                attron(COLOR_PAIR(pair));
-                addwstr(line.substr(i, 1).c_str());
-                attroff(COLOR_PAIR(pair));
-            }
-            attron(COLOR_PAIR(4));
-            if (m.empty())
-            {
-                addwstr(L" ");
-            }
-            else
-            {
-                addwstr(m.get_preedit().c_str());
-            }
-            attroff(COLOR_PAIR(4));
-            if (lineIndex + 1 < lines.size())
-            {
-                attron(COLOR_PAIR(1));
-                mvaddwstr(2, 0, lines[lineIndex + 1].c_str());
-                attroff(COLOR_PAIR(1));
-            }
-            if (lineIndex + 2 < lines.size())
-            {
-                attron(COLOR_PAIR(1));
-                mvaddwstr(4, 0, lines[lineIndex + 2].c_str());
-                attroff(COLOR_PAIR(1));
-            }
         }
         refresh();
         int ch = getch();
