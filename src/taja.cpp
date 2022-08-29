@@ -3,7 +3,7 @@
 #include <iostream>
 #include <ncurses.h>
 
-void ht::startgame(const std::vector<std::wstring> &lines)
+void ht::startgame(const std::vector<std::wstring> &lines, const std::string &layout)
 {
     initscr();
     keypad(stdscr, TRUE);
@@ -13,7 +13,7 @@ void ht::startgame(const std::vector<std::wstring> &lines)
     init_pair(2, COLOR_WHITE, COLOR_BLACK);
     init_pair(3, COLOR_WHITE, COLOR_RED);
     init_pair(4, COLOR_WHITE, COLOR_BLUE);
-    HangulManager m("2");
+    HangulManager m(layout);
     std::wstring prevline;
     std::wstring line;
     size_t lineIndex = 0;

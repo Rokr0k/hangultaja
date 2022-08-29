@@ -30,7 +30,14 @@ int main(int argc, char **argv)
             }
             if (!lines.empty())
             {
-                ht::startgame(lines);
+                if (argc > 2)
+                {
+                    ht::startgame(lines, argv[2]);
+                }
+                else
+                {
+                    ht::startgame(lines, "2");
+                }
             }
         }
     }

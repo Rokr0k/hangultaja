@@ -5,5 +5,5 @@
 
 namespace ht
 {
-    void startgame(const std::vector<std::wstring>& lines);
+    void startgame(const std::vector<std::wstring>& lines, const std::string &layout);
 }
