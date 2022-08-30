@@ -144,22 +144,19 @@ void ht::startlong(const std::vector<std::wstring> &lines, const std::string &la
     end();
 }
 
-void ht::startshort(const std::vector<std::wstring> &lines, const std::string &layout)
+void ht::startshort(const std::vector<std::wstring> &lines, int count, const std::string &layout)
 {
     init();
     HangulManager m(layout);
     std::wstring prevline;
     std::wstring line;
     size_t lineCount;
-    size_t lineIndex[3] = {0};
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<size_t> dis(0, lines.size() - 1);
-    lineIndex[0] = lines.size();
-    lineIndex[1] = dis(gen);
-    lineIndex[2] = dis(gen);
+    size_t lineIndex[3] = {lines.size(), dis(gen), dis(gen)};
     bool quit = false;
-    while (lineCount < 50 && !quit)
+    while (lineCount < count && !quit)
     {
         erase();
         if (lineIndex[0] < lines.size())
@@ -246,7 +243,7 @@ void ht::startshort(const std::vector<std::wstring> &lines, const std::string &l
             m.reset();
             lineIndex[0] = lineIndex[1];
             lineIndex[1] = lineIndex[2];
-            if (++lineCount + 1 < 50)
+            if (++lineCount + 1 < count)
             {
                 lineIndex[2] = dis(gen);
             }

@@ -20,8 +20,6 @@ int main(int argc, char **argv)
                 std::string line;
                 while (std::getline(file, line))
                 {
-                    line.erase(line.begin(), std::find_if(line.begin(), line.end(), [](unsigned char a)
-                                                          { return !std::isspace(a); }));
                     line.erase(std::find_if(line.rbegin(), line.rend(), [](unsigned char a)
                                             { return !std::isspace(a); })
                                    .base(),
@@ -36,21 +34,28 @@ int main(int argc, char **argv)
                 {
                     if (argc > 2)
                     {
-                        ht::startshort(lines, argv[2]);
+                        if (argc > 3)
+                        {
+                            ht::startshort(lines, std::stoi(argv[2]), argv[3]);
+                        }
+                        else
+                        {
+                            ht::startshort(lines, std::stoi(argv[2]), "2");
+                        }
                     }
                     else
                     {
-                        ht::startshort(lines, "2");
+                        ht::startshort(lines, 50, "2");
                     }
                 }
                 else
                 {
-                    std::cerr << "No sentences in file: " << argv[2] << "." << std::endl;
+                    std::cerr << "No sentences in file: res/short.txt" << std::endl;
                 }
             }
             else
             {
-                std::cerr << "File not found: " << argv[2] << "." << std::endl;
+                std::cerr << "File not found: res/short.txt" << std::endl;
             }
         }
         else if (strcmp(argv[1], "long") == 0)
@@ -64,8 +69,6 @@ int main(int argc, char **argv)
                     std::string line;
                     while (std::getline(file, line))
                     {
-                        line.erase(line.begin(), std::find_if(line.begin(), line.end(), [](unsigned char a)
-                                                              { return !std::isspace(a); }));
                         line.erase(std::find_if(line.rbegin(), line.rend(), [](unsigned char a)
                                                 { return !std::isspace(a); })
                                        .base(),
@@ -89,22 +92,24 @@ int main(int argc, char **argv)
                     }
                     else
                     {
-                        std::cerr << "No sentences in file: " << argv[2] << "." << std::endl;
+                        std::cerr << "No sentences in file: "
+                                  << "res/long/" << argv[2] << ".txt" << std::endl;
                     }
                 }
                 else
                 {
-                    std::cerr << "Essay not found: " << argv[2] << "." << std::endl;
+                    std::cerr << "File not found: "
+                              << "res/long/" << argv[2] << ".txt" << std::endl;
                 }
             }
             else
             {
-                std::cerr << "Essay not specified." << std::endl;
+                std::cerr << "File not specified." << std::endl;
             }
         }
         else
         {
-            std::cerr << "Invalid game mode: " << argv[1] << "." << std::endl;
+            std::cerr << "Invalid game mode: " << argv[1] << std::endl;
         }
     }
     else

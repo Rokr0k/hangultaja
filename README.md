@@ -24,11 +24,12 @@ make
 ### 짧은 글 연습
 
 ```sh
-./hangultaja short $LAYOUT
+./hangultaja short $COUNT $LAYOUT
 ```
 
 |요소|설명|
 |-|-|
+|`COUNT`|문장 개수 (기본값 50)|
 |`LAYOUT`|키보드 레이아웃 선택|
 
 ### 긴 글 연습
@@ -39,7 +40,7 @@ make
 
 |요소|설명|
 |-|-|
-|`FILE`|res/long/에 있는 텍스트 파일(확장자 제외)|
+|`FILE`|res/long/에 있는 .txt 파일 (확장자 제외)|
 |`LAYOUT`|키보드 레이아웃 선택|
 
 ### Layouts
