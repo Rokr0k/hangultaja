@@ -13,3 +13,5 @@ add_executable(hangultaja ${CXX_SOURCES} ${CXX_HEADERS})
 
 target_include_directories(hangultaja PRIVATE ${HANGUL_INCLUDE_DIRS} ${NCURSES_INCLUDE_DIRS})
 target_link_libraries(hangultaja PRIVATE ${HANGUL_LIBRARIES} ${NCURSES_LIBRARIES})
+
+file(COPY res DESTINATION ${CMAKE_BINARY_DIR})

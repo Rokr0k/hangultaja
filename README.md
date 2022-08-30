@@ -1,6 +1,6 @@
 # hangultaja
 
-CLI 기반 한글타자 긴글연습 프로그램입니다.
+CLI 기반 한글 타자연습 프로그램입니다.
 
 ## Dependencies
 
@@ -21,13 +21,25 @@ make
 
 ## Usage
 
+### 짧은 글 연습
+
 ```sh
-./hangultaja $FILEPATH $LAYOUT
+./hangultaja short $LAYOUT
 ```
 
 |요소|설명|
 |-|-|
-|`FILEPATH`|긴 글이 들어간 텍스트 파일|
+|`LAYOUT`|키보드 레이아웃 선택|
+
+### 긴 글 연습
+
+```sh
+./hangultaja long $FILE $LAYOUT
+```
+
+|요소|설명|
+|-|-|
+|`FILE`|res/long/에 있는 텍스트 파일(확장자 제외)|
 |`LAYOUT`|키보드 레이아웃 선택|
 
 ### Layouts
@@ -53,4 +65,3 @@ make
 ## Todo
 
 - [ ] 타수 측정, 표시
-- [x] 키보드 레이아웃 설정
