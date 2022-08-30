@@ -103,6 +103,9 @@ void ht::startlong(const std::vector<std::wstring> &lines, const std::string &la
             mvaddwstr(4, 0, lines[lineIndex + 1].c_str());
             attroff(COLOR_PAIR(1));
         }
+        attron(COLOR_PAIR(2));
+        mvaddstr(5, 0, (std::to_string(lineIndex + 1) + "/" + std::to_string(lines.size())).c_str());
+        attroff(COLOR_PAIR(2));
         refresh();
         int ch = getch();
         switch (ch)
@@ -147,6 +150,7 @@ void ht::startshort(const std::vector<std::wstring> &lines, const std::string &l
     HangulManager m(layout);
     std::wstring prevline;
     std::wstring line;
+    size_t lineCount;
     size_t lineIndex[3] = {0};
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -155,7 +159,7 @@ void ht::startshort(const std::vector<std::wstring> &lines, const std::string &l
     lineIndex[1] = dis(gen);
     lineIndex[2] = dis(gen);
     bool quit = false;
-    while (!quit)
+    while (lineCount < 50 && !quit)
     {
         erase();
         if (lineIndex[0] < lines.size())
@@ -219,6 +223,9 @@ void ht::startshort(const std::vector<std::wstring> &lines, const std::string &l
         attron(COLOR_PAIR(1));
         mvaddwstr(4, 0, lines[lineIndex[2]].c_str());
         attroff(COLOR_PAIR(1));
+        attron(COLOR_PAIR(2));
+        mvaddstr(5, 0, (std::to_string(lineCount + 1) + "/50").c_str());
+        attroff(COLOR_PAIR(2));
         refresh();
         int ch = getch();
         switch (ch)
@@ -239,7 +246,14 @@ void ht::startshort(const std::vector<std::wstring> &lines, const std::string &l
             m.reset();
             lineIndex[0] = lineIndex[1];
             lineIndex[1] = lineIndex[2];
-            lineIndex[2] = dis(gen);
+            if (++lineCount + 1 < 50)
+            {
+                lineIndex[2] = dis(gen);
+            }
+            else
+            {
+                lineIndex[2] = lines.size();
+            }
             break;
         case ' ':
             line += m.flush() + L" ";
