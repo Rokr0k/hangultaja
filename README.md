@@ -21,6 +21,17 @@ make
 
 ## Usage
 
+### 낱말 연습
+
+```sh
+./hangultaja word $COUNT $LAYOUT
+```
+
+|요소|설명|
+|-|-|
+|`COUNT`|단어 개수 (기본값 50)|
+|`LAYOUT`|키보드 레이아웃 선택|
+
 ### 짧은 글 연습
 
 ```sh

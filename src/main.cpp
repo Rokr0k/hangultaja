@@ -11,7 +11,50 @@ int main(int argc, char **argv)
     setlocale(LC_ALL, "");
     if (argc > 1)
     {
-        if (strcmp(argv[1], "short") == 0)
+        if (strcmp(argv[1], "word") == 0)
+        {
+            std::ifstream file("res/word.txt");
+            if (file.good())
+            {
+                std::vector<std::wstring> words;
+                std::string word;
+                while (file >> word)
+                {
+                    if (!word.empty())
+                    {
+                        std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
+                        words.push_back(conv.from_bytes(word));
+                    }
+                }
+                if (!words.empty())
+                {
+                    if (argc > 2)
+                    {
+                        if (argc > 3)
+                        {
+                            ht::startword(words, std::stoi(argv[2]), argv[3]);
+                        }
+                        else
+                        {
+                            ht::startword(words, std::stoi(argv[2]), "2");
+                        }
+                    }
+                    else
+                    {
+                        ht::startword(words, 50, "2");
+                    }
+                }
+                else
+                {
+                    std::cerr << "No words in file: res/word.txt" << std::endl;
+                }
+            }
+            else
+            {
+                std::cerr << "File not found: res/word.txt" << std::endl;
+            }
+        }
+        else if (strcmp(argv[1], "short") == 0)
         {
             std::ifstream file("res/short.txt");
             if (file.good())
@@ -20,10 +63,6 @@ int main(int argc, char **argv)
                 std::string line;
                 while (std::getline(file, line))
                 {
-                    line.erase(std::find_if(line.rbegin(), line.rend(), [](unsigned char a)
-                                            { return !std::isspace(a); })
-                                   .base(),
-                               line.end());
                     if (!line.empty())
                     {
                         std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
@@ -69,10 +108,6 @@ int main(int argc, char **argv)
                     std::string line;
                     while (std::getline(file, line))
                     {
-                        line.erase(std::find_if(line.rbegin(), line.rend(), [](unsigned char a)
-                                                { return !std::isspace(a); })
-                                       .base(),
-                                   line.end());
                         if (!line.empty())
                         {
                             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
