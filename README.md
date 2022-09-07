@@ -13,9 +13,9 @@ CLI 기반 한글 타자연습 프로그램입니다.
 
 Unix, \*nix:
 ```sh
-mkdir build
-cd build
-cmake ..
+automake
+autoconf
+./configure
 make
 ```
 
