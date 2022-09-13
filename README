@@ -1,0 +1,37 @@
+hangultaja
+A program to practice hangul keyboard input.
+
+How to build
+From tarbell
+ $ ./configure
+ $ make
+
+From source repository
+ $ ./autogen.sh
+ $ ./configure
+ $ make
+
+Dependencies
+ libhangul - Implement hangul input
+ ncursesw - Display screen via terminal
+
+How to run
+Word practice
+ $ ./hangultaja word $COUNT $LAYOUT
+ COUNT: Number of words to practice. (Default to 50)
+ LAYOUT: Layout of the keyboard.
+Sentences practice
+ $ ./hangultaja short $COUNT $LAYOUT
+ COUNT: Number of sentences to practice. (Default to 50)
+ LAYOUT: Layout of the keyboard.
+Document practice
+ $ ./hangultaja long $DOCUMENT $LAYOUT
+ DOCUMENT: Document to practice. ({*} from res/long/{*}.txt)
+ LAYOUT: Layout of the keyboard.
+
+Layouts
+ 2, 2y, 3f, 39, 3s, 3y, 32, ro
+
+Controls
+ Enter: Next word/line.
+ End: Quit program.

@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.71])
+AC_PREREQ([2.69])
 AC_INIT([hangultaja], [1.0.0], [rokr0k@rokr0k.xyz])
 AM_INIT_AUTOMAKE
 
@@ -9,8 +9,8 @@ AM_INIT_AUTOMAKE
 AC_PROG_CXX
 
 # Checks for libraries.
-PKG_CHECK_MODULES([ncurses], [ncurses])
-PKG_CHECK_MODULES([hangul], [libhangul])
+PKG_CHECK_MODULES([ncursesw], [ncursesw])
+PKG_CHECK_MODULES([libhangul], [libhangul])
 
 # Checks for header files.
 
