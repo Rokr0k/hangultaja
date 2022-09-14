@@ -5,13 +5,22 @@
 #include <algorithm>
 #include <string.h>
 #include "taja.hpp"
+#include "help.hpp"
 
 int main(int argc, char **argv)
 {
     setlocale(LC_ALL, "");
     if (argc > 1)
     {
-        if (strcmp(argv[1], "word") == 0)
+        if (strcmp(argv[1], "help") == 0)
+        {
+            std::cout << HELP_MSG(argv[0]) << std::endl;
+        }
+        else if (strcmp(argv[1], "version") == 0)
+        {
+            std::cout << PACKAGE_STRING << std::endl;
+        }
+        else if (strcmp(argv[1], "word") == 0)
         {
             std::ifstream file("res/word.txt");
             if (file.good())
@@ -150,6 +159,7 @@ int main(int argc, char **argv)
     else
     {
         std::cerr << "Game mode not specified." << std::endl;
+        std::cout << HELP_MSG(argv[0]) << std::endl;
     }
     return 0;
 }

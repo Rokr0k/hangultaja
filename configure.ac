@@ -3,6 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([hangultaja], [1.0.0], [rokr0k@rokr0k.xyz])
+AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE
 
 # Checks for programs.
